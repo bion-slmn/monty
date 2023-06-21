@@ -17,6 +17,11 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
+	if (argument == NULL)
+	{
+		fprintf(stderr, "L %d:  usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	digit = isNumber(argument);
 	if (!digit)
@@ -43,7 +48,7 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 }
 /**
- * isNUmber - checks if the string consists of numbers
+ * isNumber - checks if the string consists of numbers
  * @s: is the string
  *
  * Return: 1 on sucess and 0 on failure
@@ -63,13 +68,3 @@ int isNumber(char *s)
 	}
 	return (1);
 }
-/*
-void pop(stack_t **stack, unsigned int line_number)
-{
-}
-void add(stack_t **stack, unsigned int line_number)
-{
-}
-void swap(stack_t **stack, unsigned int line_number)
-{
-}*/

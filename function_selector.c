@@ -10,12 +10,9 @@ void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 {
 	instruction_t op[] = {{"push", push},
 		{"pall", pall},
-		/**
-		  *{"pint", pint},
-		  *{"pop", pop},
-		  *{"swap", swap},
-		  * {"add", add},
-		 */
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
 		{NULL, NULL}};
 	int i = 0;
 
@@ -26,6 +23,6 @@ void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 		i++;
 	}
 
-	fprintf(stderr, "L %d: unknown instruction %s\n", line, s);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line, s);
 	exit(EXIT_FAILURE);
 }

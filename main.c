@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	size_t len = 0;
 	FILE *fd;
 	char *buffer = NULL, **tokens;
-	stack_t *stack;
+	stack_t *stack = NULL;
 	unsigned int line = 0;
 
 
@@ -34,11 +34,13 @@ int main(int argc, char **argv)
 	{
 		line++;
 		tokens = tokenizer(buffer);
+		if (!tokens)
+			continue;
 		argument = tokens[1];
 		select_func(tokens[0], line)(&stack, line);
-		free_tok(tokens);
-		/*free(buffer);*/
 	}
+	free_tok(tokens);
+	free(buffer);
 	fclose(fd);
 	return (0);
 }
