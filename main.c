@@ -19,7 +19,8 @@ int main(int argc, char **argv)
 	FILE *fd;
 	char *buffer = NULL, **tokens;
 	stack_t *stack;
-	unsigned int line_number;
+	unsigned int line_number = 0;
+
 
 	if (argc != 2)
 	{

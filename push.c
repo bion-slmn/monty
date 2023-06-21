@@ -14,10 +14,16 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new = malloc(sizeof(stack_t));
 	int num;
 
+	if (new == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
 	num = atoi(argument);
 	if (!num)
 	{
-		fprintf(stderr, "L %d :  usage: push integer", line_number);
+		fprintf(stderr, "L %d:  usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -49,14 +55,15 @@ void pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
-	if (!stack)
+	if (!*stack)
 		return;
 
-	while (temp)
+	while (temp->next)
 	{
 		printf("%d\n", temp->n);
 		temp = temp->next;
 	}
+	printf("%d\n", temp->n);
 }
 /*
 void pop(stack_t **stack, unsigned int line_number)
