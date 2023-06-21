@@ -15,14 +15,14 @@ void (*select_func(char *s))(stack_t **stack, unsigned int line_number)
 		  *{"swap", swap},
 		  * {"add", add},
 		 */
-		{"\0", NULL}};
+		{NULL, ecode}};
 	int i = 0;
 
-	while (op[i].opcode)
+	while (op[i].opcode != NULL)
 	{
 		if (!strcmp(s, op[i].opcode))
 			return (op[i].f);
 		i++;
 	}
-	return (NULL);
+	return (op[i].f);
 }

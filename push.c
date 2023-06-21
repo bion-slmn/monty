@@ -6,24 +6,21 @@
  * @line_number: is the line number
  *
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *new = malloc(sizeof(stack_t));
 	int num;
 
-	num = atoi(argument);
-	if (!num)
+	if (!is_integer(argument))
 	{
-		fprintf(stderr, "L %d :  usage: push integer", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
+	num = atoi(argument);
 	new->n = num;
 	new->prev = NULL;
 	new->next = NULL;
 
-	if (!stack)
-		return;
 	if (*stack == NULL)
 	{
 		*stack = new;

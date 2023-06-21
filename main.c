@@ -13,8 +13,8 @@ int main(int argc, char **argv)
 	size_t len = 0;
 	FILE *fd;
 	char *buffer = NULL, **tokens;
-	stack_t *stack;
-	unsigned int line_number;
+	stack_t *head = NULL;
+	unsigned int line_number = 0;
 
 	if (argc != 2)
 	{
@@ -34,10 +34,12 @@ int main(int argc, char **argv)
 		line_number++;
 		tokens = tokenizer(buffer);
 		argument = tokens[1];
-		select_func(tokens[0])(&stack, line_number);
+		select_func(tokens[0])(&head, line_number);
 		free_tok(tokens);
 		/*free(buffer);*/
 	}
 	fclose(fd);
+	free(buffer);
+	free_linkedlist(head);
 	return (0);
 }
