@@ -1,6 +1,6 @@
 #define  _POSIX_C_SOURCE 200809L
 #include "monty.h"
-
+char *argument = NULL;
 /**
  * main - is the enterance of program.
  * @argc: is the argument count
@@ -8,7 +8,6 @@
  *
  * Return: 0 on suceess
  */
-
 int main(int argc, char **argv)
 {
 	size_t len = 0;
@@ -16,8 +15,6 @@ int main(int argc, char **argv)
 	char *buffer = NULL, **tokens;
 	stack_t *stack;
 	unsigned int line_number;
-
-	char *argument = NULL;
 
 	if (argc != 2)
 	{
