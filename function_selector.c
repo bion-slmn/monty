@@ -2,10 +2,11 @@
 /**
  * select_func - selects a function to execute
  * @s: is a string passed to the function
+ * @line: is the line number of the opcode.
  *
  * Return: a pointer corresponding to string
  */
-void (*select_func(char *s))(stack_t **stack, unsigned int line_number)
+void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 {
 	instruction_t op[] = {{"push", push},
 		{"pall", pall},
@@ -15,14 +16,16 @@ void (*select_func(char *s))(stack_t **stack, unsigned int line_number)
 		  *{"swap", swap},
 		  * {"add", add},
 		 */
-		{"\0", NULL}};
+		{NULL, NULL}};
 	int i = 0;
 
-	while (op[i].opcode)
+	while (op[i].opcode != NULL)
 	{
 		if (!strcmp(s, op[i].opcode))
 			return (op[i].f);
 		i++;
 	}
-	return (NULL);
+
+	fprintf(stderr, "L %d: unknown instruction %s\n", line, s);
+	exit(EXIT_FAILURE);
 }

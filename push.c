@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <ctype.h>
 
 /**
  * push - it add a node to the stack fromthe top
@@ -9,7 +10,7 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = malloc(sizeof(stack_t));
-	int num;
+	int num, digit;
 
 	if (new == NULL)
 	{
@@ -17,12 +18,13 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	num = atoi(argument);
-	if (!num)
+	digit = isNumber(argument);
+	if (!digit)
 	{
 		fprintf(stderr, "L %d:  usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	num = atoi(argument);
 
 	new->n = num;
 	new->prev = NULL;
@@ -40,27 +42,26 @@ void push(stack_t **stack, unsigned int line_number)
 		*stack = new;
 	}
 }
-
 /**
- * pall - prints all the values on the stack,
- *	starting from the top of the stack.
- * @stack: is the stack to be added
- * @line_number: is the line number
+ * isNUmber - checks if the string consists of numbers
+ * @s: is the string
  *
+ * Return: 1 on sucess and 0 on failure
  */
-void pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
+int isNumber(char *s)
 {
-	stack_t *temp = *stack;
+	int i = 0;
 
-	if (!*stack)
-		return;
-
-	while (temp->next)
+	while (s[i])
 	{
-		printf("%d\n", temp->n);
-		temp = temp->next;
+		if (isdigit(s[i]))
+		{
+			i++;
+		}
+		else
+			return (0);
 	}
-	printf("%d\n", temp->n);
+	return (1);
 }
 /*
 void pop(stack_t **stack, unsigned int line_number)

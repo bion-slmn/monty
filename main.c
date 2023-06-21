@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	FILE *fd;
 	char *buffer = NULL, **tokens;
 	stack_t *stack;
-	unsigned int line_number = 0;
+	unsigned int line = 0;
 
 
 	if (argc != 2)
@@ -32,10 +32,10 @@ int main(int argc, char **argv)
 
 	while (getline(&buffer, &len, fd) != -1)
 	{
-		line_number++;
+		line++;
 		tokens = tokenizer(buffer);
 		argument = tokens[1];
-		select_func(tokens[0])(&stack, line_number);
+		select_func(tokens[0], line)(&stack, line);
 		free_tok(tokens);
 		/*free(buffer);*/
 	}

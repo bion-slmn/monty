@@ -37,10 +37,11 @@ typedef struct instruction_s
 extern char *argument;/*
 char *argument = NULL;*/
 char **tokenizer(char *buffer);
-void (*select_func(char *s))(stack_t **stack, unsigned int line_number);
+void (*select_func(char *s, unsigned int line))(stack_t **, unsigned int );
 char *_strdup(char *str);
 
 void free_tok(char **tokens);
+int isNumber(char *s);
 
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
