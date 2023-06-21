@@ -29,4 +29,4 @@ char *_strdup(char *str)
 	}
 	*dup_offset = '\0';
 	return (dup);
- }
+}
