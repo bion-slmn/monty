@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <ctype.h>
 
 /**
  * push - it add a node to the stack fromthe top
@@ -17,6 +18,12 @@ void push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	num = atoi(argument);
+	if (new == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
 	new->n = num;
 	new->prev = NULL;
 	new->next = NULL;

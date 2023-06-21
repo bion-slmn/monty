@@ -17,7 +17,10 @@ char *_strdup(char *str)
 
 	dup = malloc(sizeof(char) * (len + 1));
 	if (dup == NULL)
-		return (NULL);
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
 
 	dup_offset = dup;
 
