@@ -1,7 +1,4 @@
 #include "monty.h"
-#include <stdlib.h>
-#include <stddef.h>
-#include <stdio.h>
 
 /**
  * push - it add a node to the stack fromthe top

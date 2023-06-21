@@ -1,6 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stddef.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
