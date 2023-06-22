@@ -9,12 +9,13 @@
 void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 {
 	instruction_t op[] = {{"push", push},
+		{"add", add},
+		{"nop", nop},
 		{"pall", pall},
 		/**
 		  *{"pint", pint},
 		  *{"pop", pop},
 		  *{"swap", swap},
-		  * {"add", add},
 		 */
 		{NULL, NULL}};
 	int i = 0;
