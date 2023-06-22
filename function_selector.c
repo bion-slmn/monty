@@ -18,6 +18,7 @@ void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 		 */
 		{NULL, NULL}};
 	int i = 0;
+	(void)line;
 
 	while (op[i].opcode != NULL)
 	{
@@ -25,6 +26,5 @@ void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 			return (op[i].f);
 		i++;
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line, s);
-	exit(EXIT_FAILURE);
+	return (NULL);
 }
