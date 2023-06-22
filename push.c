@@ -17,7 +17,12 @@ void push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	if (argument == NULL && (is_integer(argument) == 0))
+	if (argument == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((is_integer(argument) == 0))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -36,9 +41,7 @@ void push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	new->next = NULL;
 
 	if (*stack == NULL)
-	{
 		*stack = new;
-	}
 	else
 	{
 		new->next  = *stack;
