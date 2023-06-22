@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	{
 		line_number++;
 		tokens = tokenizer(buffer);
-		if (!tokens)
+		if (!tokens || tokens[0][0] == '#')
 			continue;
 		argument = tokens[1];
 		if (!(select_func(tokens[0], line_number)))
