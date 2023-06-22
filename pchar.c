@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * pchar - converts number to the ascii character
+ * pchar - prints the char at the top of the stack
  * @stack: is the stack on which they number exist
  * @line: is the line numner of which the opcode exists
  */
@@ -24,4 +24,31 @@ void pchar(stack_t **stack, unsigned int line)
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line);
 		exit(EXIT_FAILURE);
 	}
+}
+/**
+ * pstr - prints the string starting at the top of the stack
+ * @stack: is the stack on which they number exist
+ * @line: is the line numner of which the opcode exists
+ */
+void pstr(stack_t **stack, unsigned int line)
+{
+	int num;
+	stack_t *temp = *stack;
+	(void)line;
+
+	if (!*stack)
+		printf("\n");
+
+	while (temp)
+	{
+		num = temp->n;
+		if (num > 0 && num <= 127)
+		{
+			printf("%c", num);
+			temp = temp->next;
+		}
+		else
+			break;
+	}
+	printf("\n");
 }
