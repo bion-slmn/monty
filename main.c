@@ -19,16 +19,18 @@ int main(int argc, char **argv)
 	validate_arg(argc);
 	fd = fopen(argv[1], "r");
 	if (fd == NULL)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+		cant_open(argv[1]);
 	while (getline(&buffer, &len, fd) != -1)
 	{
 		line_number++;
 		tokens = tokenizer(buffer);
-		if (!tokens || tokens[0][0] == '#')
+		if (!tokens)
 			continue;
+		if (tokens[0][0] == '#')
+		{
+			free_tok(tokens);
+			continue;
+		}
 		argument = tokens[1];
 		if (!(select_func(tokens[0], line_number)))
 		{
@@ -62,4 +64,13 @@ void validate_arg(int argc)
 	}
 	else
 		return;
+}
+/**
+ * cant_open - prints an error message when can open file
+ * @str: is the name of the file
+ */
+void cant_open(char *str)
+{
+	fprintf(stderr, "Error: Can't open file %s\n", str);
+	exit(EXIT_FAILURE);
 }
