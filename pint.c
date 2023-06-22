@@ -23,7 +23,7 @@ void pop(stack_t **top, unsigned int line_number)
 {
 	stack_t *temp = *top;
 
-	if (*top == NULL)
+	if (*top == NULL || top == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
