@@ -34,10 +34,9 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern char *argument;/*
-char *argument = NULL;*/
+extern char *argument;
 char **tokenizer(char *buffer);
-void (*select_func(char *s, unsigned int))(stack_t **, unsigned int );
+void (*select_func(char *s, unsigned int))(stack_t **, unsigned int);
 char *_strdup(char *str);
 
 
@@ -45,6 +44,7 @@ void free_linkedlist(stack_t *head);
 void free_tok(char **tokens);
 int is_integer(const char *input);
 void validate_arg(int argc);
+void cant_open(char *s);
 
 void pall(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
