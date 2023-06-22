@@ -52,3 +52,33 @@ void pstr(stack_t **stack, unsigned int line)
 	}
 	printf("\n");
 }
+/**
+ * rotl -  rotates the stack to the top.
+ *	the top element of the stack becomes the last one,
+ *	and the second top element of the stack becomes the first one
+ *
+ * @stack: is the stack on which they number exist
+ * @line: is the line numner of which the opcode exists
+ */
+void rotl(stack_t **stack, unsigned int line)
+{
+	stack_t *temp, *temp1;
+	(void) line;
+
+	if (!*stack || !(*stack)->next)
+		return;
+	/* diconnecting the top node */
+	temp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	temp->next = NULL;
+
+	/* addding the diconnected node at end*/
+	temp1 = *stack;
+
+	while (temp1->next)
+		temp1 = temp1->next;
+
+	temp1->next = temp;
+	temp->prev = temp1;
+}
