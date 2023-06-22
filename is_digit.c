@@ -9,8 +9,10 @@ int is_integer(const char *input)
 {
 	if (input == NULL)
 		return (0);
-	if (*input == '\0' || (*input == '-' && *(input + 1) != '\0'))
+	if (*input == '\0')
 		return (0);
+	if (*input == '+' || *input == '-')
+		input++;
 
 	while (*input != '\0')
 	{
