@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 	fd = fopen(argv[1], "r");
 	if (fd == NULL)
 		cant_open(argv[1]);
+	
 	while (getline(&buffer, &len, fd) != -1)
 	{
 		line_number++;
