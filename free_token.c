@@ -5,13 +5,12 @@
  */
 void free_tok(char **tokens)
 {
-	int i = 0;
-
-	while (tokens[i])
+	if (tokens == NULL)
+		return;
+	/*while (tokens[i] != NULL)
 	{
 		free(tokens[i]);
-		tokens[i] = NULL;
 		i++;
-	}
+	}*/
 	free(tokens);
 }

@@ -13,9 +13,9 @@ int main(int argc, char **argv)
 	size_t len = 0;
 	FILE *fd;
 	char *buffer = NULL, **tokens;
-	stack_t *stack = NULL;
+	stack_t *head = NULL;
+	unsigned int line_number = 0;
 	unsigned int line = 0;
-
 
 	if (argc != 2)
 	{
@@ -37,33 +37,13 @@ int main(int argc, char **argv)
 		if (!tokens)
 			continue;
 		argument = tokens[1];
-		select_func(tokens[0], line)(&stack, line);
+		select_func(tokens[0])(&head, line_number);
 		free_tok(tokens);
+		/*free(buffer);*/
 	}
-	/*free_tok(tokens);*/
-	free_stack(stack);
-	free(buffer);
+	free_tok(tokens);
 	fclose(fd);
+	free(buffer);
+	free_linkedlist(head);
 	return (0);
-}
-
-/**
- * free_dlistint - free dlistint list
- * @head: is the begining of list
- *
- */
-void free_stack(stack_t *head)
-{
-	stack_t *temp;
-
-	if (head == NULL)
-		return;
-
-	while(head)
-	{
-	temp = head;
-        head = head->next;
-        free(temp);
-	}
-	head = NULL;
 }
