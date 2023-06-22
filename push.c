@@ -10,25 +10,19 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = malloc(sizeof(stack_t));
-	int num, digit;
+	int num;
 
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	if (argument == NULL)
+	if (argument == NULL && (isNumber(argument) == 0))
 	{
 		fprintf(stderr, "L %d:  usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	digit = isNumber(argument);
-	if (!digit)
-	{
-		fprintf(stderr, "L %d:  usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
 	num = atoi(argument);
 
 	new->n = num;
