@@ -38,9 +38,32 @@ int main(int argc, char **argv)
 			continue;
 		argument = tokens[1];
 		select_func(tokens[0], line)(&stack, line);
+		free_tok(tokens);
 	}
-	free_tok(tokens);
+	/*free_tok(tokens);*/
+	free_stack(stack);
 	free(buffer);
 	fclose(fd);
 	return (0);
+}
+
+/**
+ * free_dlistint - free dlistint list
+ * @head: is the begining of list
+ *
+ */
+void free_stack(stack_t *head)
+{
+	stack_t *temp;
+
+	if (head == NULL)
+		return;
+
+	while(head)
+	{
+	temp = head;
+        head = head->next;
+        free(temp);
+	}
+	head = NULL;
 }

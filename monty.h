@@ -41,6 +41,7 @@ void (*select_func(char *s, unsigned int line))(stack_t **, unsigned int );
 char *_strdup(char *str);
 
 void free_tok(char **tokens);
+void free_stack(stack_t *head);
 int isNumber(char *s);
 
 void push(stack_t **stack, unsigned int line_number);
