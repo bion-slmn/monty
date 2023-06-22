@@ -38,6 +38,8 @@ extern char *argument;
 char **tokenizer(char *buffer);
 void (*select_func(char *s, unsigned int))(stack_t **, unsigned int);
 char *_strdup(char *str);
+unsigned int check_mode(char *str);
+void error(char *buf, char **tokens, unsigned int line, stack_t *h, FILE *fd);
 
 
 void free_linkedlist(stack_t *head);

@@ -14,13 +14,12 @@ int main(int argc, char **argv)
 	FILE *fd;
 	char *buffer = NULL, **tokens;
 	stack_t *head = NULL;
-	unsigned int line_number = 0;
+	unsigned int line_number = 0, mode = 0;
 
 	validate_arg(argc);
 	fd = fopen(argv[1], "r");
 	if (fd == NULL)
 		cant_open(argv[1]);
-	
 	while (getline(&buffer, &len, fd) != -1)
 	{
 		line_number++;
@@ -32,18 +31,19 @@ int main(int argc, char **argv)
 			free_tok(tokens);
 			continue;
 		}
+		if (!strcmp(tokens[0], "queue") || !strcmp(tokens[0], "stack"))
+		{
+			mode = check_mode(tokens[0]);
+			continue;
+		}
 		argument = tokens[1];
 		if (!(select_func(tokens[0], line_number)))
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n",
-					line_number, tokens[0]);
-			free(buffer);
-			free_tok(tokens);
-			free_linkedlist(head);
-			fclose(fd);
-			exit(EXIT_FAILURE);
-		}
+			error(buffer, tokens, line_number, head, fd);
+
 		select_func(tokens[0], line_number)(&head, line_number);
+
+		if (mode && (!strcmp(tokens[0], "push")))
+			rotl(&head, line_number);
 		free_tok(tokens);
 	}
 	fclose(fd);
@@ -73,5 +73,35 @@ void validate_arg(int argc)
 void cant_open(char *str)
 {
 	fprintf(stderr, "Error: Can't open file %s\n", str);
+	exit(EXIT_FAILURE);
+}
+
+/**
+ * check_mode - checks if its a queue or stack
+ * @str: is the opcode
+ *
+ * Return: 1 if queue and 0 if stack
+ */
+unsigned int check_mode(char *str)
+{
+	if (!strcmp(str, "queue"))
+		return (1);
+	return (0);
+}
+/**
+ * error - prints to the stderr
+ * @buf: is the one containg the instruction
+ * @tokens: opcode is here
+ * @line: the line number of occurance
+ * @h: is the head of the double linke list
+ * @fd: is an open file pointer
+ */
+void error(char *buf, char **tokens, unsigned int line, stack_t *h, FILE *fd)
+{
+	fprintf(stderr, "L%d: unknown instruction %s\n", line, tokens[0]);
+	free(buf);
+	free_tok(tokens);
+	free_linkedlist(h);
+	fclose(fd);
 	exit(EXIT_FAILURE);
 }
