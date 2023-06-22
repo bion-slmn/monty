@@ -5,7 +5,7 @@
   * @stack: stack to work with
   * @line_number: line number of command
   */
-void div(stack_t **stack, unsigned int line_number)
+void divi(stack_t **stack, unsigned int line_number)
 {
 	int sum;
 
