@@ -46,6 +46,7 @@ void free_tok(char **tokens);
 int is_integer(const char *input);
 void validate_arg(int argc);
 
+void mod(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
