@@ -7,10 +7,12 @@
 */
 char **tokenizer(char *buffer)
 {
-	char *tok, *dup, *delim = " \n";
+	char *tok, *dup, *delim = " \n\t";
 	char **tokens;
 	int i = 0, numtoken = 0;
 
+	if (buffer == NULL)
+		return (NULL);
 	dup = _strdup(buffer);
 	tok = strtok(dup, delim);
 	while (tok)
@@ -18,7 +20,11 @@ char **tokenizer(char *buffer)
 		numtoken++;
 		tok = strtok(NULL, delim);
 	}
-
+	if (numtoken == 0)
+	{
+		free(dup);
+		return (NULL);
+	}
 	tokens = malloc(sizeof(char *) * (numtoken + 1));
 	if (tokens == NULL)
 		return (NULL);
@@ -33,4 +39,4 @@ char **tokenizer(char *buffer)
 	tokens[numtoken] = NULL;
 	free(dup);
 	return (tokens);
-	}
+}

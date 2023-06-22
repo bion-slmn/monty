@@ -12,11 +12,9 @@ void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 		{"add", add},
 		{"nop", nop},
 		{"pall", pall},
-		/**
-		  *{"pint", pint},
-		  *{"pop", pop},
-		  *{"swap", swap},
-		 */
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
 		{NULL, NULL}};
 	int i = 0;
 	(void)line;
