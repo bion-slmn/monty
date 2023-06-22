@@ -16,6 +16,7 @@ void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 		{"pop", pop},
 		{"swap", swap},
 		{"mod", mod},
+		{"pchar", pchar},
 		{NULL, NULL}};
 	int i = 0;
 	(void)line;
