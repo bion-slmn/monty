@@ -42,6 +42,7 @@ void push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	else
 	{
 		new->next  = *stack;
+		(*stack)->prev = new;
 		*stack = new;
 	}
 }
