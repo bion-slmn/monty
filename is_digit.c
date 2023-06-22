@@ -8,7 +8,7 @@
 int is_integer(const char *input)
 {
 	if (input == NULL)
-		return (1);
+		return (0);
 	if (*input == '\0' || (*input == '-' && *(input + 1) != '\0'))
 		return (0);
 
@@ -18,5 +18,5 @@ int is_integer(const char *input)
 			return (0);
 		input++;
 	}
-    return (1);
+	return (1);
 }

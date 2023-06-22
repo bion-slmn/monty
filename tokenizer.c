@@ -1,29 +1,36 @@
 #include "monty.h"
 /**
- * tokenizer - tokenizes a string into words
- * @buffer: is the string to be split
- *
- * Return: a pointer to an array of string or NULL;
- */
+* tokenizer - tokenizes a string into words
+* @buffer: is the string to be split
+*
+* Return: a pointer to an array of string or NULL;
+*/
 char **tokenizer(char *buffer)
 {
-	char *tok, *delim = " \n";
+	char *tok, *dup, *delim = " \n";
 	char **tokens;
-	int i = 0;
+	int i = 0, numtoken = 0;
+
+	dup = _strdup(buffer);
+	tok = strtok(dup, delim);
+	while (tok)
+	{
+		numtoken++;
+		tok = strtok(NULL, delim);
+	}
+
+	tokens = malloc(sizeof(char *) * (numtoken + 1));
+	if (tokens == NULL)
+		return (NULL);
 
 	tok = strtok(buffer, delim);
-	tokens = malloc(sizeof(char *) * 10);
-	if (tokens == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
 	while (tok != NULL)
 	{
-		tokens[i] = tok;
+		tokens[i] = _strdup(tok);
 		i++;
 		tok = strtok(NULL, delim);
 	}
-	tokens[i] = NULL;
+	tokens[numtoken] = NULL;
+	free(dup);
 	return (tokens);
-}
+	}

@@ -15,7 +15,6 @@ int main(int argc, char **argv)
 	char *buffer = NULL, **tokens;
 	stack_t *head = NULL;
 	unsigned int line_number = 0;
-	unsigned int line = 0;
 
 	if (argc != 2)
 	{
@@ -32,16 +31,14 @@ int main(int argc, char **argv)
 
 	while (getline(&buffer, &len, fd) != -1)
 	{
-		line++;
+		line_number++;
 		tokens = tokenizer(buffer);
 		if (!tokens)
 			continue;
 		argument = tokens[1];
-		select_func(tokens[0])(&head, line_number);
+		select_func(tokens[0], line_number)(&head, line_number);
 		free_tok(tokens);
-		/*free(buffer);*/
 	}
-	free_tok(tokens);
 	fclose(fd);
 	free(buffer);
 	free_linkedlist(head);
