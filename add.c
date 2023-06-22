@@ -11,7 +11,7 @@ void add(stack_t **stack, unsigned int line_number)
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		free_linkedlist();
+	/**free_linkedlist();**/
 		exit(EXIT_FAILURE);
 	}
 	(*stack) = (*stack)->next;
