@@ -19,6 +19,7 @@ void (*select_func(char *s, unsigned int line))(stack_t **stack, unsigned int)
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}};
 	int i = 0;
 	(void)line;

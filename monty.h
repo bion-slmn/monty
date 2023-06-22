@@ -57,4 +57,5 @@ void nop(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line);
 void pstr(stack_t **stack, unsigned int line);
 void rotl(stack_t **stack, unsigned int line);
+void rotr(stack_t **stack, unsigned int line);
 #endif
