@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * mod_nodes - Adds the top two elements of the stack.
+ * mod - gets tthe modulus the top two elements of the stack.
  * @stack: Pointer to a pointer pointing to top node.
  * @line_number: Interger representing the line number of of the opcode.
  */
