@@ -82,3 +82,33 @@ void rotl(stack_t **stack, unsigned int line)
 	temp1->next = temp;
 	temp->prev = temp1;
 }
+/**
+ * rotr - rotates the stack to the bottom.
+ *      The last element of the stack becomes the top element of the stack
+ *
+ * @stack: is the stack on which they number exist
+ * @line: is the line numner of which the opcode exists
+ */
+void rotr(stack_t **stack, unsigned int line)
+{
+	stack_t *temp, *temp1;
+	(void) line;
+
+	if (!*stack || !(*stack)->next)
+		return;
+
+	/* disconnecting the last node*/
+	temp = *stack;
+
+	while (temp->next)
+		temp = temp->next;
+
+	temp1 = temp->prev;
+	temp1->next = NULL;
+	temp->prev = NULL;
+
+	/* adding the diconnected node at the begining*/
+	temp->next = *stack;
+	(*stack)->prev = temp;
+	*stack = temp;
+}
