@@ -34,16 +34,16 @@ int main(int argc, char **argv)
 		if (!strcmp(tokens[0], "queue") || !strcmp(tokens[0], "stack"))
 		{
 			mode = check_mode(tokens[0]);
+			free_tok(tokens);
 			continue;
 		}
 		argument = tokens[1];
 		if (!(select_func(tokens[0], line_number)))
 			error(buffer, tokens, line_number, head, fd);
-
-		select_func(tokens[0], line_number)(&head, line_number);
-
 		if (mode && (!strcmp(tokens[0], "push")))
-			rotl(&head, line_number);
+			select_func("queue", line_number)(&head, line_number);
+		else
+			select_func(tokens[0], line_number)(&head, line_number);
 		free_tok(tokens);
 	}
 	fclose(fd);
