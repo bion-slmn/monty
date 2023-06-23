@@ -37,7 +37,10 @@ void pstr(stack_t **stack, unsigned int line)
 	(void)line;
 
 	if (!*stack)
+	{
 		printf("\n");
+		return;
+	}
 
 	while (temp)
 	{
