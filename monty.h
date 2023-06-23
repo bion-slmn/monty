@@ -59,6 +59,7 @@ void sub(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void divi(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+void mul_nodes(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line);
 void pstr(stack_t **stack, unsigned int line);
 void rotl(stack_t **stack, unsigned int line);
